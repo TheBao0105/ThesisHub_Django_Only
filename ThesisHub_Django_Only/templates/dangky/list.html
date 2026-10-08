@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block title %}Đăng ký · ThesisHub{% endblock %}
+{% block page_title %}Đăng ký{% endblock %}
+{% block content %}
+<div class="page-head">
+<div><div class="eyebrow">Quản lý dữ liệu</div><h2>Danh sách đăng ký đồ án</h2></div>
+<a class="button primary" href="{% url 'dangky_create' %}">＋ Thêm đăng ký</a>
+</div>
+<div class="panel">
+{% if dangkys %}
+<table>
+<thead><tr><th>ID</th><th>Sinh viên</th><th>Đề tài</th><th>Ngày đăng ký</th><th>Điểm</th><th>Xếp loại</th><th>Thao tác</th></tr></thead>
+<tbody>
+{% for dk in dangkys %}
+<tr>
+<td>{{ dk.id }}</td>
+<td><strong>{{ dk.sinh_vien.ho_ten }}</strong><div class="muted">{{ dk.sinh_vien.ma_sinhvien }}</div></td>
+<td><strong>{{ dk.de_tai.ten_detai }}</strong><div class="muted">{{ dk.de_tai.ma_detai }}</div></td>
+<td>{{ dk.ngay_dang_ky|date:"d/m/Y" }}</td>
+<td>{% if dk.diem is not None %}<strong>{{ dk.diem }}</strong>{% else %}—{% endif %}</td>
+<td><span class="badge">{{ dk.xep_loai }}</span></td>
+<td class="actions">
+<a class="button small" href="{% url 'dangky_diem' dk.id %}">Xem</a>
+<a class="button small" href="{% url 'dangky_edit' dk.id %}">Sửa</a>
+<a class="button small danger-outline" href="{% url 'dangky_delete' dk.id %}">Xóa</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}<div class="empty">Chưa có đăng ký.</div>{% endif %}
+</div>
+{% endblock %}

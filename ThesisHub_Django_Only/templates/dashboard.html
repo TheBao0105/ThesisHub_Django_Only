@@ -1,0 +1,57 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · ThesisHub{% endblock %}
+{% block page_title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div>
+        <div class="eyebrow">Tổng quan hệ thống</div>
+        <h2>Quản lý đồ án tốt nghiệp</h2>
+        <p>Quản lý sinh viên, đề tài, đăng ký và kết quả bằng Django.</p>
+    </div>
+    <div class="hero-badge">Django + ORM</div>
+</div>
+
+<div class="stats">
+    <a class="stat-card" href="{% url 'sinhvien_list' %}">
+        <div class="stat-icon blue">👨‍🎓</div>
+        <div><div class="stat-label">Sinh viên</div><div class="stat-value">{{ tong_sv }}</div></div>
+    </a>
+    <a class="stat-card" href="{% url 'detai_list' %}">
+        <div class="stat-icon purple">📚</div>
+        <div><div class="stat-label">Đề tài</div><div class="stat-value">{{ tong_dt }}</div></div>
+    </a>
+    <a class="stat-card" href="{% url 'dangky_list' %}">
+        <div class="stat-icon orange">📝</div>
+        <div><div class="stat-label">Đăng ký</div><div class="stat-value">{{ tong_dk }}</div></div>
+    </a>
+    <div class="stat-card">
+        <div class="stat-icon green">🏆</div>
+        <div><div class="stat-label">Đã có điểm</div><div class="stat-value">{{ da_co_diem }}</div></div>
+    </div>
+</div>
+
+<div class="grid-2">
+    <div class="panel">
+        <div class="panel-title">Kiến trúc hệ thống</div>
+        <div class="architecture">
+            <div class="arch-box">🌐<strong>Browser</strong><span>HTML / CSS</span></div>
+            <div class="arrow">↓</div>
+            <div class="arch-box">⚙️<strong>Django</strong><span>Views + Forms</span></div>
+            <div class="arrow">↓</div>
+            <div class="arch-box">🗄️<strong>Django ORM</strong><span>Database</span></div>
+        </div>
+    </div>
+
+    <div class="panel">
+        <div class="panel-title">Web Service</div>
+        <div class="api-info">
+            <div class="api-row"><span>Giao thức</span><strong>HTTP</strong></div>
+            <div class="api-row"><span>Dữ liệu</span><strong>JSON</strong></div>
+            <div class="api-row"><span>Framework</span><strong>Django</strong></div>
+            <div class="api-row"><span>JavaScript</span><strong>Không sử dụng</strong></div>
+        </div>
+        <a class="button secondary full" href="/api/sinhvien/">Xem JSON API sinh viên →</a>
+    </div>
+</div>
+{% endblock %}

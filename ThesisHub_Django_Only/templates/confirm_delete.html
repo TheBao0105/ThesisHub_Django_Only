@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ title }} · ThesisHub{% endblock %}
+{% block page_title %}{{ title }}{% endblock %}
+{% block content %}
+<div class="form-wrap"><div class="panel confirm">
+<div class="danger-icon">!</div>
+<h2>Bạn có chắc muốn xóa?</h2>
+<p>{{ object }}</p>
+<form method="post">
+{% csrf_token %}
+<div class="form-actions"><a class="button" href="{% url back_url %}">Hủy</a><button class="button danger" type="submit">Xóa</button></div>
+</form>
+</div></div>
+{% endblock %}

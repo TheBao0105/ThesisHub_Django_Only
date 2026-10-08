@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}ThesisHub{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+<div class="app">
+    <aside class="sidebar">
+        <div class="brand">
+            <div class="brand-icon">🎓</div>
+            <div>
+                <div class="brand-name">ThesisHub</div>
+                <div class="brand-sub">Quản lý đồ án tốt nghiệp</div>
+            </div>
+        </div>
+
+        <nav class="nav">
+            <a href="{% url 'dashboard' %}" class="{% if request.resolver_match.url_name == 'dashboard' %}active{% endif %}">📊 Dashboard</a>
+            <a href="{% url 'sinhvien_list' %}" class="{% if 'sinhvien' in request.resolver_match.url_name %}active{% endif %}">👨‍🎓 Sinh viên</a>
+            <a href="{% url 'detai_list' %}" class="{% if 'detai' in request.resolver_match.url_name %}active{% endif %}">📚 Đề tài</a>
+            <a href="{% url 'dangky_list' %}" class="{% if 'dangky' in request.resolver_match.url_name %}active{% endif %}">📝 Đăng ký</a>
+        </nav>
+
+        <div class="sidebar-note">
+            <strong>Django Only</strong>
+            <span>HTML + CSS · Không JavaScript</span>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <div class="eyebrow">SOA Management</div>
+                <h1>{% block page_title %}ThesisHub{% endblock %}</h1>
+            </div>
+            <div class="status"><span></span> Django Online</div>
+        </header>
+
+        <section class="content">
+            {% block content %}{% endblock %}
+        </section>
+
+        <footer class="footer">
+            ThesisHub · Django · HTML · CSS
+        </footer>
+    </main>
+</div>
+</body>
+</html>

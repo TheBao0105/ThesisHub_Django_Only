@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}Kết quả · ThesisHub{% endblock %}
+{% block page_title %}Kết quả đồ án{% endblock %}
+{% block content %}
+<div class="result-card">
+    <div class="result-icon">🏆</div>
+    <div class="eyebrow">Kết quả đăng ký #{{ dangky.id }}</div>
+    <h2>{{ dangky.sinh_vien.ho_ten }}</h2>
+    <p class="muted">{{ dangky.sinh_vien.ma_sinhvien }} · {{ dangky.sinh_vien.lop }}</p>
+    <div class="result-grid">
+        <div><span>Đề tài</span><strong>{{ dangky.de_tai.ten_detai }}</strong></div>
+        <div><span>Mã đề tài</span><strong>{{ dangky.de_tai.ma_detai }}</strong></div>
+        <div><span>Điểm</span><strong class="score">{% if dangky.diem is not None %}{{ dangky.diem }}{% else %}Chưa có{% endif %}</strong></div>
+        <div><span>Xếp loại</span><strong>{{ dangky.xep_loai }}</strong></div>
+    </div>
+    <div class="form-actions">
+        <a class="button" href="{% url 'dangky_list' %}">← Quay lại</a>
+        <a class="button primary" href="{% url 'dangky_edit' dangky.id %}">Cập nhật điểm</a>
+    </div>
+</div>
+{% endblock %}

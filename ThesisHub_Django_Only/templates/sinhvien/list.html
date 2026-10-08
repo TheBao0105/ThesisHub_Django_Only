@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Sinh viên · ThesisHub{% endblock %}
+{% block page_title %}Sinh viên{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <div><div class="eyebrow">Quản lý dữ liệu</div><h2>Danh sách sinh viên</h2></div>
+    <a class="button primary" href="{% url 'sinhvien_create' %}">＋ Thêm sinh viên</a>
+</div>
+
+<div class="panel">
+{% if sinhviens %}
+<table>
+    <thead><tr><th>ID</th><th>Mã sinh viên</th><th>Họ tên</th><th>Email</th><th>Lớp</th><th>Thao tác</th></tr></thead>
+    <tbody>
+    {% for sv in sinhviens %}
+    <tr>
+        <td>{{ sv.id }}</td><td><span class="code">{{ sv.ma_sinhvien }}</span></td>
+        <td><strong>{{ sv.ho_ten }}</strong></td><td>{{ sv.email }}</td><td>{{ sv.lop }}</td>
+        <td class="actions">
+            <a class="button small" href="{% url 'sinhvien_edit' sv.id %}">Sửa</a>
+            <a class="button small danger-outline" href="{% url 'sinhvien_delete' sv.id %}">Xóa</a>
+        </td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+<div class="empty">Chưa có sinh viên. Hãy thêm sinh viên đầu tiên.</div>
+{% endif %}
+</div>
+{% endblock %}

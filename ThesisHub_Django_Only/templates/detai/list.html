@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}Đề tài · ThesisHub{% endblock %}
+{% block page_title %}Đề tài{% endblock %}
+
+{% block content %}
+<div class="page-head">
+    <div><div class="eyebrow">Quản lý dữ liệu</div><h2>Danh sách đề tài</h2></div>
+    <a class="button primary" href="{% url 'detai_create' %}">＋ Thêm đề tài</a>
+</div>
+<div class="panel">
+{% if detais %}
+<table>
+<thead><tr><th>ID</th><th>Mã đề tài</th><th>Tên đề tài</th><th>Mô tả</th><th>Trạng thái</th><th>Thao tác</th></tr></thead>
+<tbody>
+{% for dt in detais %}
+<tr>
+<td>{{ dt.id }}</td><td><span class="code">{{ dt.ma_detai }}</span></td>
+<td><strong>{{ dt.ten_detai }}</strong></td><td>{{ dt.mo_ta|default:"—"|truncatechars:60 }}</td>
+<td><span class="badge">{{ dt.trang_thai }}</span></td>
+<td class="actions"><a class="button small" href="{% url 'detai_edit' dt.id %}">Sửa</a><a class="button small danger-outline" href="{% url 'detai_delete' dt.id %}">Xóa</a></td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+{% else %}<div class="empty">Chưa có đề tài.</div>{% endif %}
+</div>
+{% endblock %}
